@@ -193,7 +193,6 @@ document.onkeyup = function (keyPress) {
         setTimeout(setGame, 8000);
 
         if (wins === 10) {
-            setTimeout(200);
             alert('YOU WIN! Congratulations!');
             
         }

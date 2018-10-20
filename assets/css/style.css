@@ -5,6 +5,7 @@ body {
     font-size: 18px;
     line-height: 30px;
     color: black;
+    
 }
 
 
@@ -57,8 +58,9 @@ header {
 
 .main-container {
     width: 100%;
-    padding-top: 100px;
-    padding-bottom: 500px;
+    height: 100%;
+    padding-top: 150px;
+    padding-bottom: 700px; 
 }
 
 
@@ -145,4 +147,5 @@ footer {
     bottom: 0;
     width: 100%;
     position: fixed;
+    padding-top: 20px;
 }
