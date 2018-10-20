@@ -57,7 +57,7 @@ header {
 
 .main-container {
     width: 100%;
-    padding-top: 140px;
+    padding-top: 100px;
     padding-bottom: 500px;
 }
 
@@ -119,9 +119,7 @@ img, #animalpic {
     margin: 20px;
 }
 
-hr {
-    color: darkorange;
-}
+
 
 /* Javascript style */
 
@@ -129,7 +127,8 @@ hr {
     text-align: center;
     font-size: 30px;
     line-height: 20px;
-    padding-top: 60px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 /* Footer */
@@ -142,6 +141,8 @@ footer {
     background: #666666;
     border-top: 2px solid white;
     height: 40px;
-    margin-top: 40px;
-    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
 }

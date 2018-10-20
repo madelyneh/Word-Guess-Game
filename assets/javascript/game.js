@@ -59,74 +59,97 @@ const animals = [
     }
 ];
 
-//Picks a random index number from the animal object 
-let randomWord = [Math.floor(Math.random() * animals.length)];
+
+
 
 //is assigned the random animal.index 
-let currentAnimal = animals[randomWord];
+let currentAnimal = [];
 
+//Pushes the used animals to an arry and removes them from the animal object
 let usedAnimals = [];
-
-//let userWord = [];
 
 let wrongGuesses = [];
 
+let currentWord = [];
+
 let wrongLetters = [];
+
 let correctLetters = [];
 
 let wins = 0;
 
-let losses = 0;
-
-// let userGuess = [];
-
-let guessCount = 9;
+let guessCount = '';
 document.getElementById("guessCount").innerHTML = guessCount;
 
 //the property length from the animal object
 let underscoreLength = [];
+ 
+let underscore = [];
 
-//the word length from the species 
-let wordLength = () => {
+let animalPicture = "";
+
+let animalFacts = "";
+
+
+
+//Sets the current word
+function setAnimal() {
+
+    //Picks a random index number from the animal object 
+    let randomWord = [Math.floor(Math.random() * animals.length)];
+    currentAnimal = animals[randomWord];
+    currentWord = Array.from(currentAnimal.species);
+    animalPicture = currentAnimal.image;
+    animalFacts = currentAnimal.fact;
+    underscoreLength = [];
+
+
+    //the word length from the species 
+    
     for (let i = 0; i < currentAnimal.species.length; i++) {
         underscoreLength.push('_');
         
-        
-    }
-    return underscoreLength;
+         };
+
+    //Pushes the number of underscore to the html page.
+    document.getElementById("underscore").innerHTML = underscoreLength.join(" ");
+
+
+    usedAnimals = animals.splice(randomWord, 1);
+
+    console.log(underscoreLength);
+    console.log(currentWord + ' (current word)');
+    console.log(animalPicture + '(animalpic)');
+    console.log(usedAnimals);
+
 };
 
-//Shows the number of underscores for the word
-console.log(wordLength());
-
-//Pushes the used animals to an arry
-usedAnimals.push(animals.splice(randomWord, 1));
-console.log(usedAnimals);
-
-//Assigns the current word
-let currentWord = Array.from(currentAnimal.species);
-console.log(currentWord);
 
 
+//Resets the game
+function setGame() {
+    document.getElementById('underscore').innerHTML = " ";
+    setAnimal();
+    // usedAnimals = animals;
+    // console.log(usedAnimals);
+    // usedAnimals = [];
+    guessCount = 9;
+    document.getElementById("guessCount").innerHTML = guessCount;
+    correctLetters = [];
+    wrongGuesses = [];
+    wrongLetters = [];
+    document.getElementById('wrongLetters').innerHTML = wrongLetters.join(', ');
+    userGuess = [];
+    document.getElementById('animalpic').setAttribute("src", "../Word-Guess-Game/assets/images/lion-questionmark.jpeg");
+    document.getElementById('facts').innerHTML = '';
+
+};
+
+setGame();
 
 
 
-
-//Pushes the number of underscore to the html page.
-document.getElementById("underscore").innerHTML = underscoreLength.join(' ');
-
-
-//This keeps track of the users key selection
-        // document.addEventListener('keypress', (event) => {
-        //     let keyWord = String.fromCharCode(event.keyCode);
-        //     console.log(keyWord)
-        //     userGuesses.push(keyWord);
-
-        //         if (currentWord.indexOf(userGuesses))
-
-            
-        // });
-
+//Tracks the key strokes
 document.onkeydown = function(keyPress) {
 
     if (keyPress.keyCode >= 65 && keyPress.keyCode <= 90){
@@ -134,7 +157,7 @@ document.onkeydown = function(keyPress) {
         console.log(userGuess);
         console.log(currentWord);
 
-        
+        //If correct choice
         if (currentWord.includes(userGuess)) {
             
 
@@ -148,20 +171,37 @@ document.onkeydown = function(keyPress) {
                 }
             }    
         }
-        else if (wrongGuesses.indexOf(userGuess) < 0) {
-                wrongLetters.push(guessCount);
-                document.getElementById("guessCount").innerHTML = guessCount.join(" ");
-                guessCount--;
-                console.log(guessCount);
+        //If wrong choice
+        else  {
+            guessCount --; 
+            document.getElementById('guessCount').innerHTML = guessCount;
+            wrongLetters.push(userGuess);
+            document.getElementById('wrongLetters').innerHTML = wrongLetters.join(', ');
         }
         
-        // {
-        //     wrongGuesses.indexOf(userGuess) <0;
-        //     document.getElementById("guessCount").innerHTML = guessCount.join('wrongGuesses');
-        //     wrongLetters.push()
-        //     ;
-
-        // }
     }
 };
+
+document.onkeyup = function (keyPress) {
+
+    if (currentWord.length <= correctLetters.length) {
+        wins ++;
+        console.log('1 game won');
+        document.getElementById('wins').innerHTML = wins;
+        document.getElementById('animalpic').setAttribute('src', animalPicture);
+        document.getElementById('facts').innerHTML = animalFacts;
+        setTimeout(setGame, 8000);
+
+        if (wins === 10) {
+            setTimeout(200);
+            alert('YOU WIN! Congratulations!');
+            
+        }
+
+    }
+    else if (guessCount === 0) {
+        alert('YOU LOSE. Better luck next time.');
+    }
+
+}
 
