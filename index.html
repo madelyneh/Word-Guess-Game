@@ -32,7 +32,7 @@
                             <hr>
                             <img src="../Word-Guess-Game/assets/images/lion-questionmark.jpeg" id="animalpic">
 
-                            <div class="wordchoice"></div>
+                                <h4 id="underscore"></h4>
                         </div>
 
                     </div>
@@ -41,13 +41,14 @@
                         <div class="scoreboard">
                             <h2>Scoreboard</h2>
                             <hr>
-                            <div id="user-wins">
+                            <div id="wins">
                                 Wins:
                             </div>
-                            <div id="guess-left">
-                                Number of guesses remaining:
+                            <div>
+                                Number of guesses remaining: <span id="guessCount" style="font-size: 20px; text-align: center;"></span>
                             </div>
-                            <div id="letters-guessed">
+                            
+                            <div id="wrongLetters">
                                 Letters already guessed:
                             </div>
 
@@ -68,5 +69,8 @@
 
 
 <!--Source Javascript here-->
+
+<script type="text/javascript" src="../Word-Guess-Game/assets/javascript/game.js"> </script>
+
 </body>
 </html>
