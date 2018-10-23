@@ -118,9 +118,7 @@ function setAnimal() {
     usedAnimals = animals.splice(randomWord, 1);
 
     console.log(underscoreLength);
-    console.log(currentWord + ' (current word)');
-    console.log(animalPicture + '(animalpic)');
-    console.log(usedAnimals);
+    
 
 };
 
@@ -154,8 +152,6 @@ document.onkeydown = function(keyPress) {
 
     if (keyPress.keyCode >= 65 && keyPress.keyCode <= 90){
         let userGuess = keyPress.key.toLowerCase();
-        console.log(userGuess);
-        console.log(currentWord);
 
         //If correct choice
         if (currentWord.includes(userGuess)) {
@@ -167,7 +163,7 @@ document.onkeydown = function(keyPress) {
                     underscoreLength[i] = userGuess;
                     document.getElementById("underscore").innerHTML = underscoreLength.join(" ");
                     correctLetters.push(userGuess);
-                    console.log(correctLetters)
+                    console.log(underscoreLength);
                 }
             }    
         }
@@ -184,9 +180,8 @@ document.onkeydown = function(keyPress) {
 
 document.onkeyup = function (keyPress) {
 
-    if (currentWord.length <= correctLetters.length) {
+    if (underscoreLength.indexOf("_") <= -1) {
         wins ++;
-        console.log('1 game won');
         document.getElementById('wins').innerHTML = wins;
         document.getElementById('animalpic').setAttribute('src', animalPicture);
         document.getElementById('facts').innerHTML = animalFacts;
@@ -200,6 +195,8 @@ document.onkeyup = function (keyPress) {
     }
     else if (guessCount === 0) {
         alert('YOU LOSE. Better luck next time.');
+        setTimeout(setGame, 1000);
+
     }
 
 }
