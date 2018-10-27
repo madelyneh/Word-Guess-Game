@@ -195,6 +195,8 @@ document.onkeyup = function (keyPress) {
     }
     else if (guessCount === 0) {
         alert('YOU LOSE. Better luck next time.');
+        wins = 0;
+        document.getElementById('wins').innerHTML = wins;
         setTimeout(setGame, 1000);
 
     }
